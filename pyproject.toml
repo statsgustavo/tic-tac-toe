@@ -3,15 +3,21 @@ name = "tic-tac-toe"
 version = "0.1.0"
 description = ""
 authors = ["Luis Gustavo Santos Barros"]
+packages = [
+   { include = "tic_tac_toe" }
+]
+
+[tool.poetry.scripts]
+play = "tic_tac_toe.main:main"
 
 [tool.poetry.dependencies]
 python = "^3.9"
 numpy = "^1.22.2"
-hypothesis = "^6.39.1"
 toolz = "^0.11.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
+hypothesis = "^6.39.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
