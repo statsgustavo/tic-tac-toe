@@ -7,7 +7,14 @@ from matplotlib import pyplot as plt
 
 
 def _bandit(action_value):
-    return np.random.normal(loc=action_value, scale=1)
+    return np.random.normal(
+        loc=action_value,
+        scale=1,
+    )
+
+
+def _add_white_noise(actions, sigma=0.01):
+    return actions + np.random.normal(0, sigma, size=actions.size)
 
 
 def _select_optimal_action_and_break_ties_randomly(actions_values, actions_rewards):
@@ -92,7 +99,7 @@ def run_experiment(
     num_actions: int, epsilon: float, max_runs: int = 10000, keep_track: bool = False
 ):
     """
-    Run multi-armed bandits experiment.
+    Run multi-armed bandits experiment with non-stationary problem.
 
     :param num_actions: Number of arms bandit has, i.e. number of possible actions to
     be taken.
@@ -139,6 +146,7 @@ def run_experiment(
         except KeyboardInterrupt:
             break
         finally:
+            actions_values = _add_white_noise(actions_values)
             if keep_track:
                 history_actions.append(action_id)
                 history_steps.append(num_steps_taken)

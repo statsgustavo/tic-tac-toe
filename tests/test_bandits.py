@@ -10,8 +10,14 @@ from tic_tac_toe import bandits
 @hp.given(st.integers(1, 10))
 def test_action_reward_shape(n):
     action_values = np.random.normal(loc=0, scale=1, size=n)
-    reward = bandits._action_reward_estimate(action_values)
+    reward = bandits._bandit(action_values)
     assert isinstance(reward, np.ndarray) and (reward.size == n)
+
+
+@hp.given(st.integers(1, 10))
+def test_add_white_noise(n):
+    action_values = np.random.normal(loc=0, scale=1, size=n)
+    assert bandits._add_white_noise(action_values, 0.01).size == n
 
 
 def test_optimal_action_selection():
