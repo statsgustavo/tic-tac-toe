@@ -71,7 +71,7 @@ def _all_possible_board_configurations() -> np.ndarray:
 def _filter_valid_state(state: np.ndarray) -> bool:
     state = np.reshape(state, (3, 3))
 
-    valid_status = False
+    valid_state = False
     
     empty_count, x_count, o_count = (
         (state == "-").sum(),
@@ -80,24 +80,24 @@ def _filter_valid_state(state: np.ndarray) -> bool:
     )
 
     if empty_count == 9:
-        valid_status = True
+        valid_state = True
 
     if x_count == o_count or x_count == o_count + 1:
         if check_player_is_winner(state, "o"):
             if check_player_is_winner(state, "x"):
-                valid_status  = False
+                valid_state  = False
 
             if x_count == o_count:
-                valid_status = True
+                valid_state = True
         
         if check_player_is_winner(state, "x"):
             if x_count != o_count + 1:
-                valid_status = False
+                valid_state = False
 
         if not check_player_is_winner(state, "o"):
-            valid_status = True
+            valid_state = True
 
-    return valid_status
+    return valid_state
 
 
 def _all_valid_board_configurations() -> np.ndarray:
