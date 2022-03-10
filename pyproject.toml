@@ -8,12 +8,13 @@ packages = [
 ]
 
 [tool.poetry.scripts]
-play = "tic_tac_toe.main:main"
+play = "tic_tac_toe.main:cli"
 
 [tool.poetry.dependencies]
 python = "^3.9"
 numpy = "^1.22.2"
 toolz = "^0.11.2"
+fire = "^0.4.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
