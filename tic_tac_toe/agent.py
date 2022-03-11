@@ -16,7 +16,7 @@ class Agent:
 
     def play(self, game_board):
         possible_moves = self._update_board_knowledge(
-            self, game_board
+            game_board
         )._get_available_positions_on_the_board()
 
         move_idx = np.random.choice(possible_moves.shape[0], 1)[0]
