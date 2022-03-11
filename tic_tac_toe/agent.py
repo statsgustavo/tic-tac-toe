@@ -4,7 +4,6 @@ from tic_tac_toe import game
 
 
 class Agent:
-
     def __init__(self, game_board, epsilon=0.05, number_of_games_won=0):
         self._game_board = game_board
         self._epsilon = epsilon
@@ -18,9 +17,10 @@ class Agent:
 
     def _update_board_knowledge(self, game_board):
         self._game_board = game_board
+        return self
 
     def play(self, game_board):
-        self._update_board_knowledge(game_board)
+        _ = self._update_board_knowledge(game_board)
 
         possible_moves = self._get_available_positions_on_the_board()
         move_idx = np.random.choice(possible_moves.shape[0], 1)[0]
